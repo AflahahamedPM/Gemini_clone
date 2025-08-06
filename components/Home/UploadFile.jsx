@@ -33,10 +33,10 @@ const UploadFile = () => {
 
   return (
     <div
-      className="md:p-1 max-md:p-0.5 rounded-full dark:bg-gray-200 dark:hover:bg-gray-100 hover:bg-gray-200 cursor-pointer mr-1"
+      className="md:p-1 max-md:p-0.5 rounded-full dark:text-black dark:bg-gray-200 dark:hover:bg-gray-100 hover:bg-gray-200 cursor-pointer mr-1"
       onClick={handleClick}
     >
-      <PlusOutlined className="md:text-xl max-md:text-sm p-1" />
+      <PlusOutlined className="md:text-xl max-md:text-sm p-1 text-black " />
       <Input
         accept=".png"
         type="file"

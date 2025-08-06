@@ -12,7 +12,7 @@ const AIInput = () => {
 
   return (
     <div className="flex md:w-1/2 max-md:w-[70%] md:mx-auto max-md:m-auto max-md:pl-5 mb-12">
-      <div className="flex flex-col gap-2 w-full border border-gray-300 rounded-[24px] bg-white p-4">
+      <div className="flex flex-col gap-2 w-full border border-gray-300 rounded-[24px] dark:bg-black bg-white p-4">
         {questionImage && (
           <div className="relative w-[70px] h-[70px] overflow-hidden rounded-md">
             <Image
@@ -35,7 +35,7 @@ const AIInput = () => {
               handleSubmitQuestion();
             }
           }}
-          className="w-full text-[14px] text-black font-inherit bg-transparent outline-none resize-none p-0 placeholder:text-gray-500"
+          className="w-full text-[14px] text-black dark:text-white font-inherit bg-transparent outline-none resize-none p-0 placeholder:text-gray-500"
         />
 
         {/* Upload + Send buttons */}
