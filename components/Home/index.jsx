@@ -43,7 +43,7 @@ const Index = () => {
             <ChatComponent chats={chats} selectedChat={selectedChat} />
           ) : isLoggedIn ? (
             <p className="bg-gradient-to-r from-blue-500 via-purple-500 to-blue-300 text-transparent bg-clip-text">
-              Hello Aflah
+              Hello User
             </p>
           ) : (
             <>
