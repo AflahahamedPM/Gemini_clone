@@ -29,7 +29,13 @@ const AIInput = () => {
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="Ask Gemini"
-          className="w-full text-[18px] text-black font-inherit bg-transparent outline-none resize-none p-0 placeholder:text-gray-500"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey && question.length > 0) {
+              e.preventDefault();
+              handleSubmitQuestion();
+            }
+          }}
+          className="w-full text-[14px] text-black font-inherit bg-transparent outline-none resize-none p-0 placeholder:text-gray-500"
         />
 
         {/* Upload + Send buttons */}
