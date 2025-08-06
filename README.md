@@ -64,6 +64,7 @@ const schema = z.object({
 
 
 💡 Features
+
 ✅ Chat message auto-scroll to bottom on new messages
 
 ✅ Auto-pagination
@@ -78,16 +79,19 @@ const schema = z.object({
 1. Clone the Repository
 
 git clone https://github.com/AflahahamedPM/Gemini_clone
+
 cd gemini-machine-task
+
 2. Install Dependencies
 
 npm install
+
 3. Run the Development Server
 
 npm run dev
+
 Visit http://localhost:3000 to view it in your browser.
 
-Chat View	Dark Mode
 
 📌 TODO
  
