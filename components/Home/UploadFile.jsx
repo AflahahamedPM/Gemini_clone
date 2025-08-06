@@ -2,9 +2,28 @@
 import { PlusOutlined } from "@ant-design/icons";
 import React, { useRef } from "react";
 import { Input } from "../ui/input";
+import { useAuthData } from "../Auth/AuthContextHandler/AuthContextHandler";
 
 const UploadFile = () => {
   const fileRef = useRef(null);
+  const { setQuestionImage } = useAuthData();
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const base64 = await convertToBase64(file);
+      setQuestionImage(base64);
+    }
+  };
 
   const handleClick = () => {
     if (fileRef.current) {
@@ -18,7 +37,13 @@ const UploadFile = () => {
       onClick={handleClick}
     >
       <PlusOutlined className="md:text-xl max-md:text-sm p-1" />
-      <Input type="file" className="hidden" ref={fileRef} />
+      <Input
+        accept=".png"
+        type="file"
+        className="hidden"
+        ref={fileRef}
+        onChange={handleFileChange}
+      />
     </div>
   );
 };

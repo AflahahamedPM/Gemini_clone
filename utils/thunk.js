@@ -18,7 +18,7 @@ export const fetchNewChat = createAsyncThunk(
 
 export const addMessage = createAsyncThunk(
   "chats/addMessage",
-  async ({ chatId, question }, { getState, dispatch }) => {
+  async ({ chatId, question, image }, { getState, dispatch }) => {
     const messageId = uuidv4();
     const answer = null;
 
@@ -28,9 +28,10 @@ export const addMessage = createAsyncThunk(
         question,
         answer: answer,
         messageId,
+        image,
       })
     );
 
-    return { chatId, question, answer, messageId };
+    return { chatId, question, answer, messageId, image };
   }
 );

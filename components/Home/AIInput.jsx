@@ -1,54 +1,43 @@
+"use client";
 import React from "react";
-import { InputAdornment, TextField } from "@mui/material";
+import { useAuthData } from "../Auth/AuthContextHandler/AuthContextHandler";
 import SendButton from "./SendButton";
 import UploadFile from "./UploadFile";
-import { useAuthData } from "../Auth/AuthContextHandler/AuthContextHandler";
+import Image from "next/image";
+import { TextareaAutosize } from "@mui/material";
 
 const AIInput = () => {
-  const { handleSubmitQuestion, question, setQuestion } = useAuthData();
+  const { handleSubmitQuestion, question, setQuestion, questionImage } =
+    useAuthData();
+
   return (
-    <div className="flex md:w-1/2 max-md:w-[70%] md:mx-auto max-md:m-auto max-md:pl-5 items-end mb-12">
-      <TextField
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        multiline
-        rows={3}
-        placeholder="Ask Gemini"
-        className="w-full"
-        variant="outlined"
-        InputProps={{
-          sx: {
-            borderRadius: "24px",
-            fontSize: "18px",
-            paddingRight: "12px",
-            color: "text.primary",
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#ccc",
-            },
-            "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#999",
-            },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#000",
-            },
-            "&.MuiInputBase-root": {
-              color: "inherit",
-            },
-            "& .MuiInputBase-input::placeholder": {
-              color: "inherit",
-              opacity: 0.6,
-            },
-          },
-          endAdornment: (
-            <InputAdornment position="end">
-              <div className="flex items-center gap-2">
-                <UploadFile />
-                <SendButton handleClick={handleSubmitQuestion} />
-              </div>
-            </InputAdornment>
-          ),
-        }}
-      />
+    <div className="flex md:w-1/2 max-md:w-[70%] md:mx-auto max-md:m-auto max-md:pl-5 mb-12">
+      <div className="flex flex-col gap-2 w-full border border-gray-300 rounded-[24px] bg-white p-4">
+        {questionImage && (
+          <div className="relative w-[70px] h-[70px] overflow-hidden rounded-md">
+            <Image
+              src={questionImage}
+              alt="image"
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
+
+        <TextareaAutosize
+          rows={1}
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Ask Gemini"
+          className="w-full text-[18px] text-black font-inherit bg-transparent outline-none resize-none p-0 placeholder:text-gray-500"
+        />
+
+        {/* Upload + Send buttons */}
+        <div className="flex justify-between mt-1">
+          <UploadFile />
+          <SendButton handleClick={handleSubmitQuestion} />
+        </div>
+      </div>
     </div>
   );
 };

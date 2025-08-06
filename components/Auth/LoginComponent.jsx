@@ -19,12 +19,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
-import useAlert from "@/hooks/useAlert";
 
-const LoginComponent = ({handleSendOtp}) => {
+const LoginComponent = ({ handleSendOtp }) => {
   const { countryCodeList, loginSchema, setIsOtpOpen } = useAuthData();
   const [countryCode, setCountryCode] = useState("+91");
-  const { publishNotification } = useAlert();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -60,39 +58,41 @@ const LoginComponent = ({handleSendOtp}) => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-          <div className="flex items-center border rounded-md overflow-hidden">
-            {/* Country Code Dropdown */}
-            <Select
-              value={countryCode}
-              onValueChange={(value) => setCountryCode(value)}
-              defaultValue="+91"
-            >
-              <SelectTrigger className="bg-none text-sm px-2 py-2 border-none rounded-none w-[120px]">
-                <SelectValue placeholder="Code" />
-              </SelectTrigger>
-              <SelectContent>
-                {uniquePhoneCodes?.map((country, index) => (
-                  <SelectItem key={index} value={country.code || "+91"}>
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src={country.flag}
-                        alt={`${country.name} flag`}
-                        width={20}
-                        height={15}
-                      />
-                      <span>{country.code}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
 
-            {/* Mobile Number Input */}
-            <FormField
-              control={form.control}
-              name="mobileNo"
-              render={({ field }) => (
-                <FormItem className="w-full">
+          <FormField
+            control={form.control}
+            name="mobileNo"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                {/* Wrap input + select only */}
+                <div className="flex items-center border rounded-md overflow-hidden">
+                  {/* Country Code Dropdown */}
+                  <Select
+                    value={countryCode}
+                    onValueChange={(value) => setCountryCode(value)}
+                    defaultValue="+91"
+                  >
+                    <SelectTrigger className="bg-none text-sm px-1 py-2 border-none rounded-none w-[130px]">
+                      <SelectValue placeholder="Code" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {uniquePhoneCodes?.map((country, index) => (
+                        <SelectItem key={index} value={country.code || "+91"}>
+                          <div className="flex items-center gap-2">
+                            <Image
+                              src={country.flag}
+                              alt={`${country.name} flag`}
+                              width={20}
+                              height={15}
+                            />
+                            <span>{country.code}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  {/* Mobile Number Input */}
                   <FormControl>
                     <Input
                       {...field}
@@ -101,11 +101,16 @@ const LoginComponent = ({handleSendOtp}) => {
                       className="px-3 py-2 text-sm border-none"
                     />
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+                </div>
+
+                {/* Move the error message OUTSIDE of the flex container */}
+                <div className="pt-1 pl-1">
+                  <FormMessage className="text-xs text-red-500" />
+                </div>
+              </FormItem>
+            )}
+          />
+          {/* </div> */}
 
           <div className="flex justify-center items-center pt-3">
             <Button

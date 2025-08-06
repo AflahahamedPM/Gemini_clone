@@ -23,7 +23,7 @@ const chatSlice = createSlice({
     },
 
     addMessageToChat: (state, action) => {
-      const { chatId, question, answer, messageId } = action.payload;
+      const { chatId, question, answer, messageId, image } = action.payload;
 
       const chat = state.chats.find((chat) => chat.id === chatId);
       if (chat) {
@@ -35,6 +35,7 @@ const chatSlice = createSlice({
           question,
           answer,
           createdAt: new Date().getTime(),
+          image,
         });
       }
     },

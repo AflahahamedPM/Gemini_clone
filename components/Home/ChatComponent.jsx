@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuthData } from "../Auth/AuthContextHandler/AuthContextHandler";
 import { CopyOutlined } from "@ant-design/icons";
 import useAlert from "@/hooks/useAlert";
+import Image from "next/image";
 
 const ChatComponent = ({ chats, selectedChat }) => {
   const scrollRef = useRef(null);
@@ -37,9 +38,20 @@ const ChatComponent = ({ chats, selectedChat }) => {
               onMouseLeave={() => setHoveredIndex(null)}
               className="flex justify-end relative mb-0.5"
             >
-              <p className="bg-[#E9EEF6] cursor-pointer dark:bg-[#333537] font-normal text-sm text-black dark:text-white p-3 rounded-2xl text-left max-w-[80%] break-words">
-                {message?.question || question}
-              </p>
+              <div className="flex flex-col items-end max-w-[80%]">
+                {message?.image && (
+                  <Image
+                    src={message?.image}
+                    alt="questionImage"
+                    width={120}
+                    height={120}
+                    className="rounded-md mb-1"
+                  />
+                )}
+                <p className="bg-[#E9EEF6] cursor-pointer dark:bg-[#333537] font-normal text-sm text-black dark:text-white p-3 rounded-2xl text-left break-words">
+                  {message?.question || question}
+                </p>
+              </div>
 
               {hoveredIndex === i && (
                 <button

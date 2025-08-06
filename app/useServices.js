@@ -1,10 +1,8 @@
 "use client";
 import useAlert from "@/hooks/useAlert";
 import {
-  addMessageToChat,
   createChat,
   deleteChat,
-  getNewChat,
   setSelectedChat,
   updateMessage,
 } from "@/Redux/chatSlice";
@@ -12,7 +10,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import z from "zod";
-import { selectLatestChat } from "@/utils/selector";
 import { addMessage, fetchNewChat } from "@/utils/thunk";
 
 const useServices = () => {
@@ -26,10 +23,7 @@ const useServices = () => {
   const chats = useSelector((state) => state.chats.chats);
   const selectedChat = useSelector((state) => state.chats.selectedChat);
   const [isExpanded, setIsExpanded] = useState(false);
-
-  // console.log(selectedChat, "selectedChat");
-  // console.log(chats, "chats");
-
+  const [questionImage, setQuestionImage] = useState(null);
   const { publishNotification } = useAlert();
 
   useEffect(() => {
@@ -107,8 +101,10 @@ const useServices = () => {
       addMessage({
         chatId: chatIdToUse,
         question: question,
+        image: questionImage,
       })
     );
+    setQuestionImage(null);
 
     const messageId = response?.payload?.messageId;
 
@@ -157,6 +153,8 @@ const useServices = () => {
     isExpanded,
     setIsExpanded,
     handleDeleteChat,
+    setQuestionImage,
+    questionImage
   };
 };
 
