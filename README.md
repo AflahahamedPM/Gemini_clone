@@ -61,6 +61,8 @@ Example:
 const schema = z.object({
   message: z.string().min(1, "Message is required"),
 });
+
+
 💡 Features
 ✅ Chat message auto-scroll to bottom on new messages
 
@@ -84,9 +86,6 @@ npm install
 
 npm run dev
 Visit http://localhost:3000 to view it in your browser.
-
-📸 Screenshots
-Replace these with real screenshots later
 
 Chat View	Dark Mode
 
