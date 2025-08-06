@@ -32,19 +32,17 @@ Zod (form validation)
 Ant Design Icons
 
 🗂️ Folder Structure
-lua
-Copy
-Edit
-GEMINI_MACHINE_TASK/
-├── app/               → Next.js app routing
-├── components/        → Reusable components (Chat UI, Buttons, etc.)
-├── hooks/             → Custom hooks (e.g., useAlert)
-├── lib/               → Utility functions (e.g., chat operations)
+```
+📁 GEMINI_MACHINE_TASK/
+├── app/                  → Next.js app routing
+├── components/           → Reusable components (Chat UI, Buttons, etc.)
+├── hooks/                → Custom hooks (e.g., useAlert)
+├── lib/                  → Utility functions (e.g., chat operations)
 ├── node_modules/
-├── public/            → Static assets
-├── Redux/             → Redux slices & store config
-├── themes/            → Theme config (light/dark)
-├── utils/             → Helpers like formatters
+├── public/               → Static assets
+├── Redux/                → Redux slices & store config
+├── themes/               → Theme config (light/dark)
+├── utils/                → Helpers like formatters
 ├── .gitignore
 ├── components.json
 ├── jsconfig.json
@@ -52,29 +50,14 @@ GEMINI_MACHINE_TASK/
 ├── package.json
 ├── postcss.config.mjs
 ├── README.md
-└── tailwind.config.js
-🔁 Infinite Scroll & Pagination
-Implemented in the ChatComponent.
-
-Initially displays the latest 20 messages.
-
-When the user scrolls to the top, older messages are loaded using:
-
-js
-Copy
-Edit
-const MESSAGES_PER_PAGE = 20;
-setVisibleCount((prev) => prev + MESSAGES_PER_PAGE);
-Preserves scroll position by calculating height difference before and after adding messages.
+├── tailwind.config.js
+```
 
 🧪 Validation with Zod
 Used Zod to validate user input and prevent empty messages.
 
 Example:
 
-ts
-Copy
-Edit
 const schema = z.object({
   message: z.string().min(1, "Message is required"),
 });
@@ -91,20 +74,14 @@ const schema = z.object({
 
 ⚙️ Setup & Run Locally
 1. Clone the Repository
-bash
-Copy
-Edit
+
 git clone https://github.com/AflahahamedPM/Gemini_clone
 cd gemini-machine-task
 2. Install Dependencies
-bash
-Copy
-Edit
+
 npm install
 3. Run the Development Server
-bash
-Copy
-Edit
+
 npm run dev
 Visit http://localhost:3000 to view it in your browser.
 
@@ -114,6 +91,5 @@ Replace these with real screenshots later
 Chat View	Dark Mode
 
 📌 TODO
- Authentication
-
+ 
 Skeleton
