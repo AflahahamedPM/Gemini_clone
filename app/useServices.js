@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import z from "zod";
 import { addMessage, fetchNewChat } from "@/utils/thunk";
-
+import { randomAnswers } from "@/utils/randomAnswers";
 const useServices = () => {
   const [countryCodeList, setCountryCodeList] = useState([]);
   const [isOtpOpen, setIsOtpOpen] = useState(false);
@@ -25,24 +25,6 @@ const useServices = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [questionImage, setQuestionImage] = useState(null);
   const { publishNotification } = useAlert();
-
-  const randomAnswers = [
-    "Sure! Here's what I found based on your question.",
-    "That's a great question! Let me explain it.",
-    "Here's a quick summary to help you out.",
-    "After analyzing your input, this is the result.",
-    "This is what I came up with based on your query.",
-    "Great point! Here's some insight on that.",
-    "I've looked into it and found this:",
-    "Interesting! Here's a breakdown.",
-    "Let's dive into the answer:",
-    "Based on my understanding, here's the response.",
-    "Based on the current information, this is the most accurate explanation.",
-    "After evaluating your query, here's what I came up with.",
-    "According to recent data, this would be the ideal solution.",
-    "Let me break that down for you step by step.",
-    "Here’s a clear and concise answer to your question.",
-  ];
 
   useEffect(() => {
     if (chats?.length === 1) {
